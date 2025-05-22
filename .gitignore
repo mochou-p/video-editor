@@ -1,0 +1,6 @@
+# video-editor/.gitignore
+
+target/
+Cargo.lock
+*.txt
+

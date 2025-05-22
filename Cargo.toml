@@ -1,0 +1,18 @@
+# video-editor/Cargo.toml
+
+[package]
+name         = "video-editor"
+version      = "0.0.0"
+
+edition      = "2021"
+rust-version = "1.88.0"
+
+authors      = ["mochou-p"]
+description  = "simple video editor"
+readme       = "README.md"
+license      = "MIT OR Apache-2.0"
+repository   = "https://github.com/mochou-p/video-editor"
+
+#keywords     = []
+#categories   = []
+
