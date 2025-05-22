@@ -16,3 +16,6 @@ repository   = "https://github.com/mochou-p/video-editor"
 #keywords     = []
 #categories   = []
 
+[dependencies]
+macroquad = "0.4.14"
+
