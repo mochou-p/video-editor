@@ -43,6 +43,7 @@ struct State {
 
 // these do not change with themes or resizes
 const SEEK_BAR_HEIGHT: f32 = 70.0;
+const VIDEO_ICON_SIZE: f32 =  0.25;
 
 struct Style {
     // space
@@ -51,6 +52,7 @@ struct Style {
     line_width:      f32,
     background:      Color,
     video:           Color,
+    video_icon:      Color,
     seek_bar:        Color,
     seek_bar_hover:  Color,
     seek_bar_click:  Color,
@@ -65,6 +67,7 @@ impl Default for Style {
             line_width:      3.0,
             background:      BLACK,
             video:           DARKGRAY,
+            video_icon:      GRAY,
             seek_bar:        BLUE,
             seek_bar_hover:  SKYBLUE,
             seek_bar_click:  DARKBLUE,
@@ -122,5 +125,32 @@ fn video(state: &State, style: &Style) {
     let half_size        = size * 0.5;
 
     draw_rectangle(center_x - half_size * ratio, center_y - half_size, size * ratio, size, style.video);
+
+    let center    = Vec2 { x: center_x, y: center_y };
+    let icon_size = size.min(size * ratio);
+
+    let a = {
+        let angle = 0f32.to_radians();
+        let x     = angle.cos();
+        let y     = angle.sin();
+
+        center + Vec2 { x, y }.normalize() * VIDEO_ICON_SIZE * icon_size
+    };
+    let b = {
+        let angle = (360f32 / 3.0).to_radians();
+        let x     = angle.cos();
+        let y     = angle.sin();
+
+        center + Vec2 { x, y }.normalize() * VIDEO_ICON_SIZE * icon_size
+    };
+    let c = {
+        let angle = (-360.0f32 / 3.0).to_radians();
+        let x     = angle.cos();
+        let y     = angle.sin();
+
+        center + Vec2 { x, y }.normalize() * VIDEO_ICON_SIZE * icon_size
+    };
+
+    draw_triangle(a, b, c, style.video_icon);
 }
 
